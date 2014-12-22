@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Helloworld is project name, cloud be changed -->
+<!--
+Usage:
+
+your-new-prject-name-XXXXXX 
+... To change name to new project name, Ant script creates a Jar file
+using this name.
+your-new-main-class 
+... To change to a full name that is your main-class name. 
+
+-->
+<project name="your-new-project-name-XXXXXX" basedir="." default="main">
+  
+
+<!--
+Define the architecture of my general use project. 
+The architecture is same as Eclipse prooject.
+Beacuse most of peoople use Eclipse as Java IDE,
+I must work with them at the most of time. 
+
+-->
+<!-- .....................................................  -->
+<!-- *project-root					    -->
+<!-- *src ......... To put your source code		    -->
+<!-- *build ....... To put classes and jar in the Directory -->
+<!-- **classes						    -->
+<!-- **jar						    -->
+<!-- *lib ......... Librarys is put in here.		    -->
+<!-- .....................................................  -->
+
+
+
+
+  <property name="src.dir" value="src" />
+  <property name="build.dir" value="build" />
+  <property name="classes.dir" value="${build.dir}/classes" />
+  <property name="jar.dir" value="${build.dir}/jar" />
+  <property name="lib.dir" value="lib"/>
+  
+<!-- delare main class, name cloud be changed  -->
+  
+  <path id="classpath">
+    <fileset dir="${lib.dir}" includes="**/*.jar" />
+  </path>
+
+  <property name="main-class"  value="your-new-main-class-XXXXXX"/>
+  
+  <target name="clean">
+    <delete dir="${build.dir}" />
+  </target>
+  
+  <target name="compile">
+    <mkdir dir="${classes.dir}" />
+    <javac includeantruntime="false" srcdir="${src.dir}"  
+	   destdir="${classes.dir}" classpathref="classpath"
+	   debug="true" debuglevel="lines,vars,source" >
+    <!-- debug.... :put debug infor -->
+    </javac>
+    <!-- copy files taht  as long as haven't suffix .java. for exampe  xxx.properties -->
+    <copy todir="${classes.dir}" >
+      <fileset dir="${src.dir}" excludes="**/*.java" />
+    </copy>
+  </target>
+
+  <target name="jar" depends="compile" >
+    <mkdir dir="${jar.dir}" />
+    <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+      <manifest>
+	<attribute name="Main-Class" value="${main-class}" />
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="run" depends="jar" >
+    <!-- commment for jar without dependency of others jar : -->
+    <!-- <java jar="${jar.dir}/${ant.project.name}.jar" fork="true" > -->
+    <java fork="true" classname="${main-class}" >
+      <classpath>
+	<path refid="classpath" />
+	<path location="${jar.dir}/${ant.project.name}.jar" />
+      </classpath>
+    </java>
+  </target>
+
+  <target name="clean-build" depends="clean,jar"/>
+  <target name="main" depends="clean,run"/>
+   
+</project>
+
+
