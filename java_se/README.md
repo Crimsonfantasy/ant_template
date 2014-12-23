@@ -12,11 +12,11 @@ add Elisp snippets that adds Java stack trace support to 'compilation-mode'.
 
 
  *project-root					  
- *src ......... To put your source code		   
- *build ....... To put classes and jar in the Directory 
- **classes						   
- **jar						    
- *lib ......... Librarys is put in here.		  
+ ..src ......... To put your source code		   
+ ..build ....... To put classes and jar in the Directory 
+ .... classes... To put classes in this floder						   
+ .... jar....... Too put jar file in this floder						    
+ ..lib ......... Librarys is put in here.		  
 
 
 
