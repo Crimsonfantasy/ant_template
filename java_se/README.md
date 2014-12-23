@@ -10,14 +10,14 @@ add Elisp snippets that adds Java stack trace support to 'compilation-mode'.
 
 ## Define the architecture of my general use project.
 
-<!-- .....................................................  -->
-<!-- *project-root					    -->
-<!-- *src ......... To put your source code		    -->
-<!-- *build ....... To put classes and jar in the Directory -->
-<!-- **classes						    -->
-<!-- **jar						    -->
-<!-- *lib ......... Librarys is put in here.		    -->
-<!-- .....................................................  -->
+
+ *project-root					  
+ *src ......... To put your source code		   
+ *build ....... To put classes and jar in the Directory 
+ **classes						   
+ **jar						    
+ *lib ......... Librarys is put in here.		  
+
 
 
 ## Usage 
